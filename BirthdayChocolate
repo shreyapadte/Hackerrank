@@ -1,0 +1,51 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+public class Solution 
+{
+    static int chocolate(int d, int m, int[] c)
+    {
+        int count = 0;
+        //date-->addition month-->arraysize
+        for(int j=0;j<c.length;j++)
+        {
+            int sum = 0;
+             for(int i=0;i<m;i++)
+            {
+                if((j+i)<c.length)
+                {
+                    sum = sum + c[j+i];
+                }   
+            }
+             if(sum==d)
+            { 
+                count++;
+            }
+        }
+        return count;
+    }
+    public static void main(String[]args)
+    {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] c = new int[n];
+        for(int i=0;i<n;i++)
+        {
+            c[i] = sc.nextInt();
+        }
+        int d = sc.nextInt();
+        int m = sc.nextInt();
+        int result = chocolate(d,m,c);
+        System.out.println(result);
+    }
+    
+}
