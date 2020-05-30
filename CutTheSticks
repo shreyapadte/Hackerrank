@@ -1,0 +1,39 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution 
+{
+    public static void main(String[] args) 
+    {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[]arr = new int[n];
+
+        for(int r=0;r<n;r++)
+        {
+            arr[r] = sc.nextInt();
+        }
+        Arrays.sort(arr);
+
+        int count =0;
+
+        System.out.println(n);
+        for(int i=1;i<n;i++)
+        {
+            if (arr[i] != arr[i-1]) 
+            {
+                System.out.println(arr.length - i);
+            }
+           
+        }
+        
+    }
+
+}
+
+  
