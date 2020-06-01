@@ -1,0 +1,70 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution 
+{
+    static int numberofPosition(int n, int k, int x, int y, int a[], int b[]) 
+    { 
+        
+        int r1 = y-1; 
+        int r2 = n-y; 
+        int c1 = x-1; 
+        int c2 = n-x;
+        int d1 = Math.min( x-1, y-1 ); 
+        int d2 = Math.min( n-x, n-y ); 
+        int d3 = Math.min( n-x, y-1 ); 
+        int d4 = Math.min( x-1, n-y ); 
+
+        for (int i = 0; i < k; i++) 
+        { 
+            if ( x == a[i] && b[i] < y ) 
+                r1 = Math.min(r1, y-b[i]-1); 
+      
+            if ( x == a[i] && b[i] > y ) 
+                r2 = Math.min(r2, b[i]-y-1); 
+      
+            if ( y == b[i] && a[i] < x ) 
+                c1 = Math.min(c1, x-a[i]-1); 
+      
+            if ( y == b[i] && a[i] > x ) 
+                c2 = Math.min(c2,a[i]-x-1); 
+
+            if ( x > a[i] && y > b[i] && x-a[i] == y-b[i] ) 
+                d1 = Math.min(d1, x-a[i]-1); 
+      
+            if ( a[i] > x && b[i] > y && a[i]-x == b[i]-y ) 
+                d2 = Math.min( d2, a[i]-x-1); 
+      
+            if ( a[i] > x && y > b[i] && a[i]-x == y-b[i] ) 
+                d3 = Math.min(d3, a[i]-x-1); 
+      
+            if ( x > a[i] && b[i] > y && x-a[i] == b[i]-y ) 
+                d4 = Math.min(d4, x-a[i]-1); 
+        } 
+      
+        return  r1 + r2 + c1 + c2 + d1 + d2 + d3 + d4 ; 
+    }  
+
+    public static void main (String[] args) 
+    { 
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt(); // Chessboard size 
+        int k = sc.nextInt(); // number of obstacles 
+        int x = sc.nextInt(); // Queen x position 
+        int y = sc.nextInt(); // Queen y position 
+        int[] a = new int[k];
+        int[] b = new int[k];
+        for(int a0 = 0; a0 < k; a0++)
+        {
+            a[a0] = sc.nextInt();
+            b[a0] = sc.nextInt();
+        }
+  
+    System.out.println(numberofPosition(n, k, x, y, a , b)); 
+    } 
+}
