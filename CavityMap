@@ -1,0 +1,45 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution 
+{
+    public static void main(String[]args)
+    {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        String grid[] = new String[n];
+        for(int a=0; a < n; a++)
+        {
+            grid[a] = sc.next();
+        }
+
+        for(int i=1;i<n-1;i++)
+        {
+            for(int j=1;j<n-1;j++)
+            {
+                int l = Character.getNumericValue(grid[i].charAt(j-1));
+                int r = Character.getNumericValue(grid[i].charAt(j+1));
+                int u = Character.getNumericValue(grid[i-1].charAt(j));
+                int d = Character.getNumericValue(grid[i+1].charAt(j));
+                int m = Character.getNumericValue(grid[i].charAt(j));
+
+                if(l<m && r<m && u<m && d<m)
+                {
+                    StringBuilder sb = new StringBuilder(grid[i]);
+                    sb.setCharAt(j,'X');
+                    grid[i] = sb.toString();
+                }
+            }
+        }
+
+        for(int b=0; b < n; b++)
+        {
+            System.out.println(grid[b]);
+        }
+    }
+}
